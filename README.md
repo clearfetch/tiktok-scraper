@@ -1,7 +1,5 @@
 # TikTok Scraper - Hashtags, Profiles, Sounds & Video Stats
 
-**Run it on Apify: [apify.com/clearfetch/tiktok-scraper](https://apify.com/clearfetch/tiktok-scraper)**
-
 Scrape TikTok without logging in: a hashtag's total views and its top videos, a profile's followers and its
 latest videos, a sound's top videos, and full public stats for any video link: views, likes, shares, comments,
 saves, post time, duration, hashtags, sound and author. **$1.00 per 1,000 results.** No cookies, no proxy, no
@@ -132,6 +130,10 @@ link) come back as rows with `"ok": false` and a plain-language `error`. They ar
 **$1.00 per 1,000 results**: one charge per video, hashtag, profile or sound row written. Failed inputs,
 repeats (a video listed by two hashtags is written once) and videos filtered out by `newerThan` are free.
 
+Paid Apify plans pay less: 10% off on Bronze, 20% on Silver and 30% on Gold and higher tiers.
+
+Apify also charges a run-start fee of $0.00005 per started GB of allocated memory (minimum one event), including runs that produce no chargeable results.
+
 ## Use cases
 
 - **Trend research**: which videos lead a hashtag, and how many views the hashtag has in total. Widen with
@@ -151,6 +153,11 @@ The proxy option exists for very large scheduled volumes only.
 infinite-scroll feeds need signed requests, which this Actor does not forge, so it does not page further. To
 go wide instead of deep, add more hashtags or turn on **Related hashtags to follow**.
 
+**Why does a big hashtag like #fashion return an error?** TikTok refuses to list some hashtags without a login,
+many of them large generic or brand ones (#fashion, #travel, #gaming, #minecraft when checked in September 2026;
+#cooking, #nba and #fyp work). Those come back as a free error row saying so. More specific hashtags, profiles and
+video links are not affected.
+
 **Can it search by keyword?** Not directly: TikTok's search needs a logged-in, signed request. Use hashtags
 and related hashtags instead.
 
@@ -167,7 +174,16 @@ Run it from the Apify API or a client library, schedule it in Apify Console, or 
 Zapier or any MCP client through Apify's integrations. Results are available as JSON, CSV, Excel and through
 the dataset API.
 
+## More tools from clearfetch
+
+- [TikTok Profile Scraper](https://apify.com/clearfetch/tiktok-profile-scraper): followers, likes and the latest videos of any account
+- [TikTok Video Scraper](https://apify.com/clearfetch/tiktok-video-scraper): full stats for any video link
+- [TikTok Comments Scraper](https://apify.com/clearfetch/tiktok-comments-scraper): every comment and reply under a video
+- [Google Trends Scraper](https://apify.com/clearfetch/google-trends-scraper): interest over time, by region and related queries, plus today's trending searches
+
 ## Changelog
+
+- **1.0.3** (2026-09) — hashtags TikTok refuses to list are reported as such, not as "not found".
 
 - **1.0** — Hashtags, profiles, sounds and video links; full stats per video; date filter; related hashtags;
   summary rows; error rows for anything that cannot be read.
